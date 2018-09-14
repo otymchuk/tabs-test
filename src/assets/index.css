@@ -1,0 +1,166 @@
+html * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: Opan Sans, Arial, Helvetica, sans-serif;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(156, 39, 176, 0.14);
+  border-right: 1px solid rgba(156, 39, 176, 0.14);
+  border-left: 1px solid rgba(156, 39, 176, 0.14);
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  margin-left: -10px;
+  -webkit-appearance: none;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3f51b5;
+  background-clip: content-box;
+  border-color: #3f51b5;
+  border-style: solid;
+  border-width: 0 1px;
+  border-radius: 10px;
+}
+
+.tr {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.tr:before {
+  display: block;
+  height: 100%;
+  content: '';
+  margin: 0px;
+}
+
+.ti {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  width: 100%;
+}
+
+.col-1 {
+  width: 8.33%;
+}
+
+.col-1-5 {
+  width: 9.5%;
+
+}
+
+.col-2 {
+  width: 16.66%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.33%;
+  
+}
+
+.col-5 {
+  width: 41.66%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.33%;
+}
+
+.col-8 {
+  width: 66.66%;
+
+}
+
+.col-9 {
+  width: 75%; 
+}
+
+.col-10 {
+  width: 83.33%;
+}
+
+.col-11 {
+  width: 91.66%;
+}
+
+.col-12 {
+  width: 100%;
+}
+.col {
+  width: auto;
+  float: left;
+}
+
+[class*="col-"] {
+  float: left;
+}
+
+
+main {
+  padding: 0px 0px 0px 0px; max-width: 100%
+}
+
+.main {
+  max-width: 800px;
+  min-height: 100vh;
+  margin: 0px auto;
+  background-color: #fff;
+}
+
+.topnav > ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav > ul li {
+  flex: 3;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  padding: 12px 18px;
+  text-decoration: none;
+}
+
+.topnav > ul li:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: #111;
+  border-bottom: 3px solid darkviolet
+}
