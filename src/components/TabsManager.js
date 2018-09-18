@@ -19,10 +19,12 @@ class TabsManager extends Component {
 
     dynamicLoad() {
         this.setState({ component: null }, () =>
-            import(`./tabs/${this.props.match.params.tab}`).then(component => {
+            import(`./tabs/${this.props.match.params.tab}`)
+            .then(component => {
                 let A = component[this.props.match.params.tab]
                 this.setState({ component: <A /> })
             })
+            .catch(err=>console.log(err))
         )
     }
 
