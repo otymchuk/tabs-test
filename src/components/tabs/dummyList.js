@@ -1,2 +1,2 @@
 import React from 'react';
-export const dummyList = <h1>dummyList</h1>
+export const dummyList = ()=><h1>dummyList</h1>
