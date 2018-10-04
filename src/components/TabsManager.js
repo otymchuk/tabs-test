@@ -1,5 +1,11 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
+
+import * as DataActions from '../redux/modules/cinema/actions'
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { compose } from 'recompose'
 import { tabs } from './tabs/tabs_'
 
 class TabsManager extends Component {
@@ -7,36 +13,40 @@ class TabsManager extends Component {
         super(props);
         this.state = {
             component: null,
+            data: null
         }
-        this.tabsList = this.tabsList.bind(this)
         this.dynamicLoad = this.dynamicLoad.bind(this)
-        
-    }
-
-    changeTab = (index) => {
-        this.props.history.replace(tabs[index].id)
-    }
-
-    dynamicLoad() {
-        this.setState({ component: null }, () =>
-            import(`./tabs/${this.props.match.params.tab}`)
-            .then(component => {
-                let A = component[this.props.match.params.tab]
-                this.setState({ component: <A /> })
-            })
-            .catch(err=>console.log(err))
-        )
+        this.fetchPosts = this.fetchPosts.bind(this)
     }
 
     componentDidMount() {
-        this.dynamicLoad()
+        this.fetchPosts(this.props.match.params.tab)
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.match.params.tab !== this.props.match.params.tab) {
-            this.props = nextProps
-            this.dynamicLoad()
+            this.setState({ component: null }, () => this.fetchPosts(nextProps.match.params.tab, 'RP'))
         }
+    }
+
+    fetchPosts(m) {
+        let q = tabs.filter(x => x.query === m)
+        if (q.length > 0) this.props.actions.fetchPosts(q[0].query, r => {
+            if (r.ok) this.dynamicLoad(q[0])
+        })
+    }
+
+    dynamicLoad(m) {
+        import(`./tabs/${m.path}`)
+            .then(component => {
+                let A = component[m.path.split('.')[0]]
+                this.setState({ component: <A list={this.props.list} /> })
+            })
+            .catch(err => console.log(err))
+    }
+
+    changeTab = (index) => {
+        this.props.history.push(tabs[index].query)
     }
 
     tabsList() {
@@ -45,7 +55,7 @@ class TabsManager extends Component {
             <li
                 key={index}
                 onClick={() => this.changeTab(index)}
-                className={this.props.match.params.tab === item.id ? 'active' : ''}
+                className={this.props.match.params.tab === item.query ? 'active' : ''}
             >{item.title}</li>
         ))
         return (
@@ -57,18 +67,38 @@ class TabsManager extends Component {
 
     render() {
         let tabs = this.tabsList()
+        let spinner = <h1>Loading...</h1>
+
         return (
             <main>
                 <div className="main">
-                    <div className="ti col-12 " key='tabsList'>{tabs}</div>
-                    <div className="ti col-12 " key='tab'>
-                        {this.state.component ? this.state.component : <h1>Loading...</h1>}
+                    <div key='tabsList'>{tabs}</div>
+                    <div key='tab' style={{ minHeight: '100vh' }}>
+                        {this.state.component ? this.state.component : spinner}
                     </div>
+                    <div key='tabsList2'>{tabs}</div>
                 </div>
             </main>
         )
     }
 }
 
-export default withRouter(TabsManager);
+
+const mapStateToProps = (state) => ({
+    init: state.data.init,
+    modalTaskView: state.data.modalTaskView,
+    list: state.data.list,
+});
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(DataActions, dispatch),
+    }
+}
+
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(TabsManager);
 

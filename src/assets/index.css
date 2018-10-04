@@ -121,7 +121,7 @@ body {
 }
 
 [class*="col-"] {
-  float: left;
+  /* float: left; */
 }
 
 
@@ -164,3 +164,24 @@ main {
   background-color: #111;
   border-bottom: 3px solid darkviolet
 }
+
+.flex-container {
+  margin: 10px 0px;
+}
+
+.flex-container, .flex-container > * {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.w-310 {
+  width:  310px;
+}
+
+.flex-container > div > p {
+  word-wrap: break-word;
+  color: darkviolet;
+  font-weight: 700;
+}
+

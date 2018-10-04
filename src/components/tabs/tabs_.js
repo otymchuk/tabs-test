@@ -1,5 +1,5 @@
 export const tabs = [
-    {id: 'dummyTable', title: 'Dummy Table', order: 1, path: 'tabs/dummyTable.js'},
-    {id: 'dummyChart', title: 'Dummy Chart', order: 2, path: 'tabs/dummyChart.js'},
-    {id: 'dummyList', title: 'Dummy List', order: 0, path: 'tabs/dummyList.js'}
+    {id: 'AnyID', title: 'Guardians', order: 0, path: 'dummyTable.js', query: 'Guardians'},
+    {id: 'AnyID', title: 'Batman', order: 2, path: 'dummyList.js', query: 'Batman'},
+    {id: 'AnyID', title: 'Captain America', order: 1, path: 'dummyList.js', query: 'Captain America'},
     ]

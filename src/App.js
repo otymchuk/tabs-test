@@ -5,20 +5,21 @@ import {
     Switch,
     Redirect,
 } from 'react-router-dom';
+
 import TabsManager from './components/TabsManager';
 
 class App extends Component {
-  render() {
-    return (
-    <Router>
-        <div style={{backgroundColor: '#777', minHeight: '100vh'}}>
-            <Switch>
-                <Route exact path={"/"} render={() => <Redirect to="/dummyList"/>}/> 
-                <Route exact path={"/:tab"} component={() => <TabsManager />}/>
-            </Switch>
-        </div>
-    </Router>
-    );
-  }
+    render() {
+        return (
+                <Router>
+                    <div style={{ backgroundColor: '#777', minHeight: '100vh' }}>
+                        <Switch>
+                            <Route exact path={"/"} render={() => <Redirect to="/dummyList" />} />
+                            <Route exact path={"/:tab"} component={() => <TabsManager />} />
+                        </Switch>
+                    </div>
+                </Router>
+        );
+    }
 }
 export default App;
