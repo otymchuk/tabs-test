@@ -14,7 +14,7 @@ class App extends Component {
                 <Router>
                     <div style={{ backgroundColor: '#777', minHeight: '100vh' }}>
                         <Switch>
-                            <Route exact path={"/"} render={() => <Redirect to="/dummyList" />} />
+                            <Route exact path={"/"} render={() => <Redirect to="/Guardians" />} />
                             <Route exact path={"/:tab"} component={() => <TabsManager />} />
                         </Switch>
                     </div>
